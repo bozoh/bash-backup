@@ -78,7 +78,7 @@ MANDA_EMAIL_INFO=no
 #/ocl_plugin.sh -u [USUARIO ORACLE] -p <SENHA ORACLE> -s <SID> 
 #
 #Plugin Mysql
-#mysql_plugin -p <PASSWORD ROOT> -d <BANCO> #
+#mysql_plugin -u <MYSQL_USER> -p <PASSWORD> -d <BANCO> #
 
 # tar.gz plugin
 # tgz_plugin.sh -s <ARQUIVO/DIRETORIO ORIGEM> 

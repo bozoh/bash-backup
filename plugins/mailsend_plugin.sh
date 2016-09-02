@@ -1,6 +1,7 @@
 #!/bin/bash
+#See more in https://github.com/muquit/mailsend
  
-MAILSEND_DIR=backup/plugins/bin
+MAILSEND_DIR=../plugins/bin
 
 function modo_usar 
 {
@@ -74,12 +75,12 @@ then
 	exit 0
 fi
 
-dominio=`hostname`
+
 
 if [ "$DEBUG" ]
 then
-	echo "echo -e \"$MENSAGEM\" | xargs -0  $MAILSEND_DIR/mailsend -f $MAIL_FROM -d $dominio -smtp $SMTP -t $EMAILS -sub \"$ASSUNTO\" +cc +bcc -M"
+	echo "$MAILSEND_DIR/mailsend -f $MAIL_FROM -smtp $SMTP -t \"$EMAILS\" -sub \"$ASSUNTO\" +cc +bcc -M \"$MENSAGEM\""
 else
-	junk=`echo -e \"$MENSAGEM\" | xargs -0  $MAILSEND_DIR/mailsend -f $MAIL_FROM -d $dominio -smtp $SMTP -t $EMAILS -sub "$ASSUNTO" +cc +bcc -M`
+	$MAILSEND_DIR/mailsend -f $MAIL_FROM -smtp $SMTP -t "$EMAILS" -sub "$ASSUNTO" +cc +bcc -M "$MENSAGEM" -cs "utf-8" -mime-type "text/plain"
 	exit $?
 fi

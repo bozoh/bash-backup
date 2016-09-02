@@ -59,13 +59,13 @@ fi
 
 if [ "$DEBUG" = "yes" ]
 then
-	echo "sh -c \"$MYSQLDUMP -u$USER -p$PASS --opt $BANCO > $ARQUIVO\""
+	echo "sh -c \"$MYSQLDUMP -u$USER -p$PASS $BANCO > $ARQUIVO\""
 else
 	if [ ! -n "$MYSQLDUMP" ]
 	then
 		echo "Não foi possí­vel encontrar o comando mysqldump"
 		exit 127
 	fi
-	sh -c "$MYSQLDUMP -p$ROOTPASS --opt $BANCO > $ARQUIVO"
+	sh -c "$MYSQLDUMP -u$USER -p$PASS $BANCO > $ARQUIVO"
 	exit $?
 fi
