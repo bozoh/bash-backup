@@ -1,0 +1,86 @@
+-versão 3.4 15/08/2014
+	Mandando só um e-mail no final do processamento
+	grantindo a cópia do arquivo para o local de backup
+
+-versão 3.3 07/08/2014
+	Correção do bug que em algumas situações apagava o arquivo de configuração do backup
+
+-versão 3.2 15/05/2013
+	Correção do bug da remoção de backups mensais
+	Verificação da versão do postgres, nos plugins do postgres
+	Preservando o ownership das tabelas nos plugins do postgres
+	Preservando o ownership dos arquivos de backup quando executado como root
+
+-versão 3.1 21/09/2010
+- adição da variaveis MANDA_EMAIL_SUCESSO, MANDA_EMAIL_WARN, MANDA_EMAIL_INFO
+- remoção da variavel MANDA_EMAIL
+- BUG: removido o bug de parar todos os backups quando um deles apresentava erro
+- BUG: corrigido o erro na remoção de backup antigos
+- adiçao do pluging pg_plugin_host.sh
+- atualizando o backup.conf_sample
+ 
+-versão 3.0 25/05/2010
+ - é possível colocar por quanto tempo backup deve ser mantido
+ - geração de multiplos backup no mesmo momento é mais rápida, por exemplo quando um 
+ backup diário e mensal rodam ao mesmo tempo
+ - possibilidade de somente mandar emails com erros e warning  
+ - BUG nos plugins de tranferencia rsync 
+ 
+-versão 2.1.5 08/02/2010
+- BUG: correção da permissão do diretótio de backup, quando criado pelo script
+- BUG: permitindo que o backup possa ser executado de qualquer diretório
+  Atualização do plugin do mysql
+
+-versão 2.1.4 05/02/2010
+- adição do pg_plugin.sh, que não usa o su 
+- renomeado o pg_plugin.sh antigo para pg_plugins_with_su.sh
+
+-versão 2.1.3 25/11/2009
+- Correção de bugs:
+- BUG: correção do no nome do arquivo de backup semanal
+- Removendo algumas depedências das funções
+
+-versão 2.1.2 23/10/2009
+- Correção de bugs:
+- BUG: erro ao obter a data no backup mensal e anual quando a data atual é menor
+que a data de backup
+- BUG: erro ao obter a data antiga no backup mensal e anual quando a data atual 
+é menor que a data de backup
+- BUG: erro ao obter a proxima execucao no backup mensal e anual a data atual 
+é menor que a data de backup
+- BUG: não exportava o locale padrão definido no backup.sh
+- BUG: backups antigos eram removidos antes de mover o backup novo para o 
+diretório de backup,podendo causar perda de backups
+- BUG: Corrigido os erros na execução dos plugins de mail, mailsend e mysql
+- adicionado alguns comentários ao código
+ Funcionalidades
+- adicionando a funcionalidade de remoção do backup anual após uma quantidade 
+de tempo definida pela variável MANTER_BACKUP_ANUAL
+- adicionando uma flag para mostrar a versão no arquivo backup.sh (-v)
+- adicionando uma flag para ativar o MASTER_DEBUG no arquivo backup.sh (-d) 
+
+-versão 2.1.1 20/10/2009
+ Correção de bugs
+- BUG: O script não abortava quando de backup falhava
+- BUG: Script não voltava a condição inicial quando era terminado (CTRL+C ou via kill)
+ Funcionalidades
+- as mensagens de warn são enviadas por e-mail
+- adicionado a variável DEBUG em cada configuração
+- adicionado a variável MASTER_DEBUG no backup.sh, para debugar todas as configurações
+
+-versão 2.1.0 20/10/2009
+ Correção bugs:
+- BUG: Correção de vários bugs no backup.sh
+- BUG: adição do binario funcionado do mailsend
+- Todos os plugins testados, e usando o getopts ao invés da expressão regular para pegar os parâmetros
+- adição do plugin rsync_local_plugin
+
+-versão 2.0.0 16/10/2009
+- O script só faz o gerenciamento dos arquivos de  backup, não os gera, quem faz isso agora são os plugins
+- Agora é possivel definir diferentes horáios e tipos (DIARO/SEMANAL/...) para cada backup.
+- Backups paralelos são mais dificeis de ocorerem
+- Melhor Gerenciamento dos Backups Semanais
+- Arquivo de configuração de um novo backup mais simples
+
+-versão 1.0.0 10/08/2005
+- Versão inicial
