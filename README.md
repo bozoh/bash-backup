@@ -18,5 +18,5 @@ Simple backup rotine scripts with schedule, remote transfer, e-mail report
 
 
 #Cron  sample
-15 0-23 * * * /backup/backup.sh 2>/dev/null /dev/null
+15 0-23 * * * /backup/backup.sh 2>/dev/null >/dev/null
 
