@@ -1,2 +1,4 @@
+backup-files
+tests
 backup.conf
 *.log

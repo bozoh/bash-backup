@@ -75,14 +75,19 @@ fi
 
 PG_VERSION=`psql --version`
 PG_VERSION=`echo $PG_VERSION | cut -d" " -f3 |cut -d"." -f1` 
-
+ATIVA_GZ=`echo $ARQUIVO | cut -d"." -f2-3`
+if [ "$ATIVA_GZ" = "sql.gz" ]
+then
+	TMP=`echo $ARQUIVO | cut -d"." -f1`
+	ARQUIVO="${TMP}.sql"
+fi
 if [ "$DEBUG" ]
 then
 	if [ $PG_VERSION -le 8 ]
 	then
 		echo "pg_dump $BANCO -On$ESQUEMA -d -E$ENCONDING -Fc -U$USUARIO_POSTGRES -h$HOST -f$ARQUIVO"
 	else
-		echo "pg_dump $BANCO -On$ESQUEMA --inserts -E$ENCONDING -Fc -U$USUARIO_POSTGRES -h$HOST -f$ARQUIVO"
+		echo "pg_dump $BANCO -On$ESQUEMA -E$ENCONDING -Fc -U$USUARIO_POSTGRES -h$HOST -f$ARQUIVO"
 	fi
 else
 	#dependendo da versão do postgres, não aceita a opção -E no dump
@@ -90,9 +95,12 @@ else
 	then
 		pg_dump $BANCO -On$ESQUEMA -d -E$ENCONDING -Fc -U$USUARIO_POSTGRES -h$HOST -f$ARQUIVO
 	else
-		pg_dump $BANCO -On$ESQUEMA --inserts -E$ENCONDING -Fc -U$USUARIO_POSTGRES -h$HOST -f$ARQUIVO
+		pg_dump $BANCO -On$ESQUEMA -E$ENCONDING -Fc -U$USUARIO_POSTGRES -h$HOST -f$ARQUIVO
 	fi
-	
+	if [ "$ATIVA_GZ" = "sql.gz" ]
+	then
+		gzip $ARQUIVO
+        fi
 	exit $?
 fi
 
