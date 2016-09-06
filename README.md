@@ -6,6 +6,7 @@ Simple backup rotine scripts with schedule, remote transfer, e-mail report
 
 
 #Log rotate sample:
+```
 /backup/*.log {
         daily
         missingok
@@ -15,7 +16,7 @@ Simple backup rotine scripts with schedule, remote transfer, e-mail report
         notifempty
         create 640 root backup
 }   
-
+```
 
 #Cron  sample
 15 0-23 * * * /backup/backup.sh 2>/dev/null >/dev/null
